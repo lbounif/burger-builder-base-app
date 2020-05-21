@@ -12,9 +12,7 @@ const INGREDIENT_PRICES = {
 }
 
 class BurgerBuilder extends Component {
-    // constructor (props) {
-    //     super(props)
-    // }
+
     state = {
         ingredients : {
             salad: 0,
@@ -22,8 +20,20 @@ class BurgerBuilder extends Component {
             cheese: 0,
             meat: 0
         },
-        totalPrice: 100
+        totalPrice: 100,
+        purshasble: false
     }
+
+    updatePurchaseState = (ingredients) => {
+        const sum = Object.keys(ingredients)
+            .map(igKey => {
+                return ingredients[igKey]
+            }).reduce((sum, elt) => {
+                return sum + elt
+            }, 0)
+        this.setState({purshasble: sum > 0})
+    }
+
     addIngredientHandler = (type) => {
         console.log("type is: ", type)
         const oldCount = this.state.ingredients[type]
@@ -38,12 +48,13 @@ class BurgerBuilder extends Component {
         console.log("updatedIngredients are: ", updatedIngredients)
         console.log("new price is: ", newPrice)
         this.setState({ingredients:updatedIngredients, totalPrice:newPrice})
+        this.updatePurchaseState(updatedIngredients)
     }
 
     removeIngredientHandler = (type) => {
         console.log("type is: ", type)
         const oldCount = this.state.ingredients[type]
-        if(oldCount <= 0){
+        if(oldCount <= 0) {
             return
         }
         const updatedCount = oldCount - 1
@@ -57,14 +68,15 @@ class BurgerBuilder extends Component {
         console.log("updatedIngredients are: ", updatedIngredients)
         console.log("new price is: ", newPrice)
         this.setState({ingredients:updatedIngredients, totalPrice:newPrice})
+        this.updatePurchaseState(updatedIngredients)
     }
 
     render () {
         const disabledInfo = {
             ...this.state.ingredients
         }
-        for(let key in disabledInfo) {
-            disabledInfo[key] = disabledInfo <= 0
+        for( let key in disabledInfo ) {
+            disabledInfo[key] = disabledInfo[key] <= 0
         }
         console.log("disabledInfo: ", disabledInfo)
         //salad: false, bacon: false, cheese: false, meat: false
@@ -75,6 +87,7 @@ class BurgerBuilder extends Component {
                     ingredientAdded = {this.addIngredientHandler}
                     ingredientRemoved = {this.removeIngredientHandler}
                     disabled = {disabledInfo}
+                    purchasable = {this.state.purshasble}
                     price = {this.state.totalPrice}/>
             </Aux>
         )
