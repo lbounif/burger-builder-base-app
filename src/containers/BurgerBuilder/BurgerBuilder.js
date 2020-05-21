@@ -78,7 +78,11 @@ class BurgerBuilder extends Component {
         this.updatePurchaseState(updatedIngredients)
     }
     purchaseCancelHandler = () => {
-        this.setState({purchasing: false})
+        this.setState({purshasing: false})
+    }
+
+    purchaseContinueHandler = () => {
+        alert('You continue')
     }
 
     render () {
@@ -95,7 +99,10 @@ class BurgerBuilder extends Component {
                 <Modal 
                     show={this.state.purshasing}
                     modalClosed = {this.purchaseCancelHandler}>
-                    <OrderSummary ingredients = {this.state.ingredients}/>
+                    <OrderSummary 
+                        ingredients = {this.state.ingredients}
+                        purshaseCancelled = {this.purchaseCancelHandler}
+                        purshaseContinued = {this.purchaseContinueHandler}/>
                 </Modal>
                 <Burger ingredients = {this.state.ingredients}></Burger>
                 <BuildControls 
