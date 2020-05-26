@@ -42,7 +42,7 @@ class BurgerBuilder extends Component {
     }
 
     addIngredientHandler = (type) => {
-        console.log("type is: ", type)
+        //console.log("type is: ", type)
         const oldCount = this.state.ingredients[type]
         const updatedCount = oldCount + 1
         const updatedIngredients = {
@@ -52,14 +52,14 @@ class BurgerBuilder extends Component {
         const priceAddition = INGREDIENT_PRICES[type]
         const oldPrice = this.state.totalPrice
         const newPrice = oldPrice + priceAddition
-        console.log("updatedIngredients are: ", updatedIngredients)
-        console.log("new price is: ", newPrice)
+        //console.log("updatedIngredients are: ", updatedIngredients)
+        //console.log("new price is: ", newPrice)
         this.setState({ingredients:updatedIngredients, totalPrice:newPrice})
         this.updatePurchaseState(updatedIngredients)
     }
 
     removeIngredientHandler = (type) => {
-        console.log("type is: ", type)
+        //console.log("type is: ", type)
         const oldCount = this.state.ingredients[type]
         if(oldCount <= 0) {
             return
@@ -72,8 +72,8 @@ class BurgerBuilder extends Component {
         const priceDeduction = INGREDIENT_PRICES[type]
         const oldPrice = this.state.totalPrice
         const newPrice = oldPrice - priceDeduction
-        console.log("updatedIngredients are: ", updatedIngredients)
-        console.log("new price is: ", newPrice)
+        //console.log("updatedIngredients are: ", updatedIngredients)
+        //console.log("new price is: ", newPrice)
         this.setState({ingredients:updatedIngredients, totalPrice:newPrice})
         this.updatePurchaseState(updatedIngredients)
     }
@@ -92,7 +92,7 @@ class BurgerBuilder extends Component {
         for( let key in disabledInfo ) {
             disabledInfo[key] = disabledInfo[key] <= 0
         }
-        console.log("disabledInfo: ", disabledInfo)
+        //console.log("disabledInfo: ", disabledInfo)
         //salad: false, bacon: false, cheese: false, meat: false
         return (
             <Aux>
