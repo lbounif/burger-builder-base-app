@@ -5,12 +5,12 @@ import Button from '../../UI/Button/Button'
 
 class OrderSummary extends Component {
 
-    componentWillUpdate(){
-        console.log("[OrderSummary] will update")
-    }
+    // componentWillUpdate(){
+    //     console.log("[OrderSummary] will update")
+    // }
 
     render(){
-        console.log("here props are: ", this.props)
+       // console.log("here props are: ", this.props)
         const ingredientSummary = Object.keys(this.props.ingredients)
             .map(igKey => {
             return <li key={igKey}>
@@ -28,8 +28,8 @@ class OrderSummary extends Component {
             </ul>
             <p><strong>Total price: {this.props.price} </strong></p>
             <p>Continue to checkout ? </p>
-            <Button btnType = 'Danger' clicked= {this.props.purshaseCancelled}>CANCEL</Button>
-            <Button btnType = 'Success' clicked= {this.props.purshaseContinued}>CONTINUE</Button>
+            <Button btnType = 'Danger' clicked= {this.props.purchaseCancelled}>CANCEL</Button>
+            <Button btnType = 'Success' clicked= {this.props.purchaseContinued}>CONTINUE</Button>
         </Aux>
         )
     }

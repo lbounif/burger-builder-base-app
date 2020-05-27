@@ -10,10 +10,9 @@ const controls = [
     {label: 'Meat', type: 'meat'}
 ]
 
-const buildControls = ( props ) => {
-  console.log("In Build Controls props are: ", props.disabled)
-  console.log("controls is: ", controls)
-  return (
+const buildControls = ( props ) => (
+  //console.log("In Build Controls props are: ", props.disabled)
+  //console.log("controls is: ", controls)
         <div className={classes.BuildControls}>
           <p>Current prince : <strong>{props.price}</strong></p>
           { controls.map(ctr => (
@@ -30,6 +29,5 @@ const buildControls = ( props ) => {
             onClick= {props.ordered}>ORDER NOW</button>
         </div>
   )
-}
 
 export default buildControls
